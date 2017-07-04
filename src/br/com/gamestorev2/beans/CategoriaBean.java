@@ -1,10 +1,15 @@
 package br.com.gamestorev2.beans;
 
-import br.com.gamestorev2.entidades.Categoria;
+import javax.faces.bean.ManagedBean;
 
+import br.com.gamestorev2.entidades.Categoria;
+import br.com.gamestorev2.repository.CategoriaRepository;
+
+@ManagedBean
 public class CategoriaBean {
 	
 	private Categoria categoria;
+	
 	
 	public Categoria getCategoria() {
 		return categoria;
@@ -18,6 +23,18 @@ public class CategoriaBean {
 	
 		categoria = new Categoria();
 	
+	}
+	
+	public String salvar(){
+		if(CategoriaRepository.getCategoriaByName(categoria.getNome())==null){
+			CategoriaRepository.setCategoria(categoria);
+			setCategoria(new Categoria());
+			System.out.println("deu certo");
+			return "/admin/index.jsf";
+		}
+		System.out.println("deu pau");
+		return "/categoria.jsf";
+		
 	}
 
 }

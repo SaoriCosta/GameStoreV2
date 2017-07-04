@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h:form>
+		<h:outputLabel>Nome : </h:outputLabel>
+		<h:inputText value="#{produtoBean.produto.nome}"></h:inputText>
+		<h:outputLabel>Descrição : </h:outputLabel>
+		<h:inputText value="#{produtoBean.produto.descricao}"></h:inputText>
+		<h:selectManyMenu value="#{produtoBean.produto.categorias}">
+			<f:converter converterId="categoriaConverter" />
+			<f:selectItems value="#{categoriaBean.categorias}" var="c"
+				itemLabel="#{c.nome}" itemValue="#{c}" required="true">
+			</f:selectItems>
+		</h:selectManyMenu>
+		
+		<h:inputText value="#{produtoBean.produto.preco}"></h:inputText>
+		<h:inputText value="#{produtoBean.produto.codigo}"></h:inputText>
+
+		<h:commandButton value="Salvar" action="#{produtoBean.salvar}"></h:commandButton>
+	</h:form>
+</body>
+</html>
