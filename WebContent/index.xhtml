@@ -3,19 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
 >
-<head>
+<h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>GameStore</title>
-</head>
-<body>
+</h:head>
+<h:body>
+
+
+
 
 <h:outputLink value="#home" >Home</h:outputLink>
-<h:outputLink value="#categoria.jsf" >Categoria</h:outputLink>
-<h:outputLink value="#sobre" >Sobre</h:outputLink>
+<h:outputLink value="#categoria.jsf" >Produtos</h:outputLink>
+<h:outputLink value="#sobre" >Categorias</h:outputLink>
+<h:form>
+<h:inputText></h:inputText>
+<h:commandButton value="Pesquisar" type="submit" />
+</h:form>
 <h:outputLink value="#contato" >Contato</h:outputLink>
 <h:outputLink value="#cadastro" >Cadastre-se</h:outputLink>
 
 
-</body>
+<hr></hr>
+
+
+<h:form id="form">
+    <p:carousel value="#{carouselView.produtos}" headerText="Últimos Lançamentos" var="produto" itemStyle="text-align:center" responsive="true">
+        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+            <f:facet name="header">
+                
+            </f:facet>
+ 
+            <h:outputText value="Id:" />
+            <h:outputText value="#{produto.codigo}" />
+ 
+            
+        </p:panelGrid>
+ 
+        <f:facet name="footer">
+               Rodapé
+        </f:facet>
+    </p:carousel>
+   </h:form> 
+
+
+</h:body>
 </html>

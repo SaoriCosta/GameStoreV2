@@ -31,6 +31,7 @@ public class CategoriaRepository implements Serializable {
 	public static List<Categoria> getCategoriasByName(String nomeCategoria) {
 		EntityManagerFactory emf = DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 		String sql = "SELECT o FROM Categoria o WHERE nome like '%" + nomeCategoria + "%'";
 		List<Categoria> categorias = em.createQuery(sql, Categoria.class).getResultList();
 		em.getTransaction().commit();
@@ -45,7 +46,7 @@ public class CategoriaRepository implements Serializable {
 		Categoria categoria =null;
 		try {
 		String sql = "SELECT o FROM Categoria o WHERE nome ='" + nomeCategoria + "'";
-		
+		em.getTransaction().begin();
 			categoria = em.createQuery(sql, Categoria.class).getSingleResult();
 			em.getTransaction().commit();
 			em.close();
@@ -55,6 +56,23 @@ public class CategoriaRepository implements Serializable {
 		
 		return categoria;
 		
+	}
+	
+	public static List<Categoria> getCategorias(){
+		
+		EntityManagerFactory emf = DatabaseManager.getEmf();
+		EntityManager em = emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		String sql = "SELECT o FROM Categoria o";
+		
+		List<Categoria> categorias = em.createQuery(sql,Categoria.class).getResultList();
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		
+		return categorias;
 	}
 
 }

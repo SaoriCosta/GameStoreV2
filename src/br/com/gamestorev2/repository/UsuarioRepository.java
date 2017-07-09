@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 
 import br.com.gamestorev2.databasemaneger.DatabaseManager;
 import br.com.gamestorev2.entidades.Usuario;
@@ -45,12 +46,16 @@ public class UsuarioRepository implements Serializable{
 	public static Usuario getByLoginSenha(String login, String senha){
 		EntityManagerFactory emf  =	DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
-		
+		Usuario user = null;
+		try{
 		em.getTransaction().begin();
-		String sql = "SELECT o FROM Usuarios o WHERE email='"+login+"' and senha='"+senha+"'";
-		Usuario user = em.createQuery(sql,Usuario.class).getSingleResult();
+		String sql = "SELECT o FROM Usuario o WHERE email='"+login+"' and senha='"+senha+"'";
+		user = em.createQuery(sql,Usuario.class).getSingleResult();
 		em.getTransaction().commit();
-		em.close();
+		em.close();}
+		catch(NoResultException e){
+			System.out.println("Erro!");
+		}
 		
 		return user;
 	}
@@ -60,7 +65,7 @@ public class UsuarioRepository implements Serializable{
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		String sql = "SELECT o FROM Usuarios o WHERE email='"+login+"'";
+		String sql = "SELECT o FROM Usuario o WHERE email='"+login+"'";
 		Usuario user = em.createQuery(sql,Usuario.class).getSingleResult();
 		em.getTransaction().commit();
 		em.close();

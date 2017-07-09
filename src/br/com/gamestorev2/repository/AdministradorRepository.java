@@ -29,7 +29,7 @@ public class AdministradorRepository implements Serializable {
 	public static Administrador getAdminByLoginSenha(String email, String senha){
 		EntityManagerFactory emf  =	DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
-		
+		em.getTransaction().begin();
 		String sql = "SELECT o FROM Administrador o WHERE email ='"+email+"'and senha ='"+senha+"'";
 		Administrador admin = em.createQuery(sql,Administrador.class).getSingleResult();
 		em.getTransaction().commit();

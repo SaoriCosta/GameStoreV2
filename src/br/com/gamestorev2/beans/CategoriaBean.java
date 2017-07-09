@@ -1,5 +1,7 @@
 package br.com.gamestorev2.beans;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 
 import br.com.gamestorev2.entidades.Categoria;
@@ -37,4 +39,8 @@ public class CategoriaBean {
 		
 	}
 
+	public List<Categoria> getCategorias(){
+		return CategoriaRepository.getCategorias();
+	}
+	
 }

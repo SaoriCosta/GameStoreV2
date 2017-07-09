@@ -13,7 +13,15 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	private String cpf;
+	private boolean admin;
+	
 	
 	public int getId() {
 		return id;
