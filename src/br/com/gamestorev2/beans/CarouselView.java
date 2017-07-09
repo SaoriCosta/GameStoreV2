@@ -16,21 +16,17 @@ import br.com.gamestorev2.service.ProdutoService;
 @ViewScoped
 public class CarouselView implements Serializable {
      
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -469752869244401684L;
 
 	private List<Produto> produtos;
      
     private Produto selectedProduto;
      
-    @ManagedProperty("br.com.gamestorev2.service.ProdutoService@22396702")
-    private ProdutoService service;
+    @ManagedProperty("br.com.gamestorev2.service.ProdutoService")
+    private ProdutoService service1;
    
     @PostConstruct
     public void init() {
-        produtos = service.createCars(9);
+        produtos = service1.createCars(0);
     }
   
     
@@ -44,7 +40,7 @@ public class CarouselView implements Serializable {
 	}
 
 	public ProdutoService getService() {
-		return service;
+		return service1;
 	}
 
 	public void setSelectedProduto(Produto selectedProduto) {
@@ -57,7 +53,7 @@ public class CarouselView implements Serializable {
     }
  
     public void setService(ProdutoService service) {
-        this.service = service;
+        this.service1 = service;
     }
  
     public Produto getSelectedProduto() {
