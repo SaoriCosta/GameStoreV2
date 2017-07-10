@@ -23,7 +23,7 @@ public class Produto implements Serializable{
 	private int id;
 	private String nome;
 	private String descricao;
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	private List<Categoria> categorias;
 	private double preco;
 	

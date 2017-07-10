@@ -11,6 +11,8 @@
 <title>Insert title here</title>
 </h:head>
 <h:body>
+	<h:outputText value="#{loginBean.usuario.nome}"></h:outputText>
+
 	<h:form>
 	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 		<h:outputLabel>Nome : </h:outputLabel>
@@ -49,12 +51,15 @@
 		</p:column>
 		<p:column>
 			<h:form>
-				<h:commandButton value="Editar" action="#{produtoBean.carregar(p)}"></h:commandButton>
+				<h:commandButton value="Editar" action="#{produtoBean.carregar(p)}">
+				</h:commandButton>
 			</h:form>
 		</p:column>
 		<p:column>
 			<h:form>
-				<h:commandButton value="Remover" action="#{produtoBean.remover(p)}"></h:commandButton>
+				<h:commandButton value="Remover">
+				  <f:param name="action" value="#{p}" />
+				  </h:commandButton>
 			</h:form>
 		</p:column>
 		

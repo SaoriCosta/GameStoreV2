@@ -5,12 +5,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.gamestorev2.entidades.Categoria;
 import br.com.gamestorev2.entidades.Produto;
-import br.com.gamestorev2.repository.CategoriaRepository;
 import br.com.gamestorev2.repository.ProdutoRepository;
 
-@ManagedBean
+@ManagedBean(name="produtoBean")
 @ViewScoped
 public class ProdutoBean {
 	
@@ -48,7 +46,7 @@ public class ProdutoBean {
 	
 	public String carregar(Produto produto){
 		setProduto(produto);
-		return "/edit-info.jsf";
+		return "/admin/produtos.jsf";
 	}
 	
 	

@@ -40,6 +40,7 @@ public class ProdutoRepository implements Serializable{
 		
 		em.getTransaction().begin();
 		em.persist(produto);
+		
 		em.getTransaction().commit();
 		em.close();
 
@@ -80,7 +81,6 @@ public class ProdutoRepository implements Serializable{
 		
 		em.getTransaction().begin();
 		em.merge(produto);
-	
 		em.flush();
 		em.getTransaction().commit();
 		em.close();

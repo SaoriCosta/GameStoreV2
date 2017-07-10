@@ -40,7 +40,7 @@ public class AdminFilter implements Filter {
 			System.out.println("Autorizado para: " + loginBean.getUsuario());
 			chain.doFilter(request, response);
 			}else{
-				System.out.println("Não autorizado");
+				System.out.println("Nï¿½o autorizado");
 				request.getRequestDispatcher("/access-denied.jsf").forward(request, response);
 			}
 		} else {

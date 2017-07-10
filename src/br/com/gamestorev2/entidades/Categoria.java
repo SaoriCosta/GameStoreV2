@@ -18,7 +18,6 @@ public class Categoria {
 	private int id;
 	private String nome;
 	private String descricao;
-	@ManyToOne(fetch = FetchType.EAGER)
 	private Produto produtos;
 	public int getId() {
 		return id;
