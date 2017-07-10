@@ -1,6 +1,5 @@
 package br.com.gamestorev2.beans;
 
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,56 +10,37 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.gamestorev2.entidades.Produto;
 import br.com.gamestorev2.service.ProdutoService;
+
  
 @ManagedBean
 @ViewScoped
-public class CarouselView implements Serializable {
+public class DataGridView implements Serializable {
      
-
-	private List<Produto> produtos;
+    private List<Produto> Produtos;
      
     private Produto selectedProduto;
      
-    @ManagedProperty("br.com.gamestorev2.service.ProdutoService")
-    private ProdutoService service1;
-   
+    @ManagedProperty("#{produtoService}")
+    private ProdutoService service;
+     
     @PostConstruct
     public void init() {
-        produtos = service1.createCars(0);
+        Produtos = service.createProdutos(48);
     }
-  
-    
-    
+ 
     public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public ProdutoService getService() {
-		return service1;
-	}
-
-	public void setSelectedProduto(Produto selectedProduto) {
-		this.selectedProduto = selectedProduto;
-	}
-
-	
-    public List<Produto> getCars() {
-        return produtos;
+        return Produtos;
     }
  
     public void setService(ProdutoService service) {
-        this.service1 = service;
+        this.service = service;
     }
  
     public Produto getSelectedProduto() {
         return selectedProduto;
     }
  
-    public void setSelectedCar(Produto selectedProduto) {
+    public void setSelectedProduto(Produto selectedProduto) {
         this.selectedProduto = selectedProduto;
     }
 }

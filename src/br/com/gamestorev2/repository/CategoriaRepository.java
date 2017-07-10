@@ -27,6 +27,8 @@ public class CategoriaRepository implements Serializable {
 		em.close();
 
 	}
+	
+	
 
 	public static List<Categoria> getCategoriasByName(String nomeCategoria) {
 		EntityManagerFactory emf = DatabaseManager.getEmf();
@@ -39,7 +41,26 @@ public class CategoriaRepository implements Serializable {
 
 		return categorias;
 	}
-
+	
+	public static Categoria getCategoriaById(int id) {
+		EntityManagerFactory emf = DatabaseManager.getEmf();
+		EntityManager em = emf.createEntityManager();
+		Categoria categoria =null;
+		try {
+		String sql = "SELECT o FROM Categoria o WHERE id ="+id;
+		em.getTransaction().begin();
+			categoria = em.createQuery(sql, Categoria.class).getSingleResult();
+			em.getTransaction().commit();
+			em.close();
+		} catch (NoResultException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return categoria;
+		
+	}
+	
+	
 	public static Categoria getCategoriaByName(String nomeCategoria) {
 		EntityManagerFactory emf = DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();

@@ -63,13 +63,16 @@ public class UsuarioRepository implements Serializable{
 	public static Usuario getByLogin(String login){
 		EntityManagerFactory emf  =	DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
-		
+		Usuario user = null;
+		try{
 		em.getTransaction().begin();
 		String sql = "SELECT o FROM Usuario o WHERE email='"+login+"'";
-		Usuario user = em.createQuery(sql,Usuario.class).getSingleResult();
+		 user = em.createQuery(sql,Usuario.class).getSingleResult();
 		em.getTransaction().commit();
 		em.close();
-		
+		}catch(NoResultException r){
+			System.out.println(r.getMessage());
+		}
 		return user;
 	}
 

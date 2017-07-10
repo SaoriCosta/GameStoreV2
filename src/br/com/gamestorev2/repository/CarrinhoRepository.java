@@ -1,14 +1,14 @@
 package br.com.gamestorev2.repository;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 
 import br.com.gamestorev2.databasemaneger.DatabaseManager;
 import br.com.gamestorev2.entidades.Carrinho;
-import br.com.gamestorev2.entidades.Categoria;
+import br.com.gamestorev2.entidades.Usuario;
 
 public class CarrinhoRepository implements Serializable{
 
@@ -22,7 +22,9 @@ public class CarrinhoRepository implements Serializable{
 		EntityManagerFactory emf  =	DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
+		
 		em.persist(carrinho);
+		em.flush();
 		em.getTransaction().commit();
 		em.close();
 
@@ -32,6 +34,32 @@ public class CarrinhoRepository implements Serializable{
 		
 	}
 	
+	public static Carrinho getCarByUser(Usuario user){
+		
+		EntityManagerFactory emf = DatabaseManager.getEmf();
+		EntityManager em = emf.createEntityManager();
+		Carrinho car = null;
+		try{
+		em.getTransaction().begin();
+		String sql = "SELECT o FROM Carrinho o Where usuario.id = "+user.getId();
+		car = em.createQuery(sql,Carrinho.class).getSingleResult();
+		em.getTransaction().commit();
+		em.close();
+		
+		}catch(NoResultException r){
+			
+		}
+		
+		return car;
+	}
+	
+	public static void update(){
+		EntityManagerFactory emf = DatabaseManager.getEmf();
+		EntityManager em = emf.createEntityManager();
+		
+		
+		
+	}
 	
 }
 

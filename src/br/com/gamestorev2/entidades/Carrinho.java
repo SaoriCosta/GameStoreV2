@@ -3,6 +3,7 @@ package br.com.gamestorev2.entidades;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,7 +16,7 @@ public class Carrinho {
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Produto> produto;
 	private double preco_acumulado;
 	@OneToOne

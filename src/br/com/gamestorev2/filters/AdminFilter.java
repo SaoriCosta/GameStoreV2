@@ -18,7 +18,7 @@ import br.com.gamestorev2.beans.LoginBean;
  * Servlet Filter implementation class AdminFilter
  */
 
-@WebFilter("/admin")
+@WebFilter("/admin/*")
 public class AdminFilter implements Filter {
 
     public AdminFilter() {
@@ -36,11 +36,15 @@ public class AdminFilter implements Filter {
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		LoginBean loginBean = (LoginBean) session.getAttribute("loginBean");
 		if (loginBean != null && loginBean.getUsuario() != null) {
+			if(loginBean.getUsuario().isAdmin()){
 			System.out.println("Autorizado para: " + loginBean.getUsuario());
 			chain.doFilter(request, response);
+			}else{
+				System.out.println("Não autorizado");
+				request.getRequestDispatcher("/access-denied.jsf").forward(request, response);
+			}
 		} else {
-			System.out.println("Não autorizado");
-			request.getRequestDispatcher("/access-denied.jsf").forward(request, response);
+			
 		}
 	}
 	

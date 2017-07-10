@@ -3,11 +3,13 @@ package br.com.gamestorev2.beans;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.gamestorev2.entidades.Categoria;
 import br.com.gamestorev2.repository.CategoriaRepository;
 
 @ManagedBean
+@ViewScoped
 public class CategoriaBean {
 	
 	private Categoria categoria;

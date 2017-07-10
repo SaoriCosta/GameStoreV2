@@ -1,105 +1,192 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui"
->
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>GameStore</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>GameStore</title>
+	<style>
+html {
+	font-family: sans-serif;
+}
+
+ul {
+	
+}
+
+ul li {
+	display: inline;
+}
+
+.btn {
+	background: #000;
+	color: #fff;
+	padding: 0.5%;
+	border: none;
+	border-radius: 5%;
+}
+
+.inputTextSearch {
+	width: 100%;
+}
+#modal-window-login{
+	background:#1565c0;
+	padding:2%;
+	margin:0;
+	border-top-left-radius:21%;
+	border-top-right-radius:21%;
+	color:#fff;
+	
+}
+.ui-widget{
+	font-family: sans-serif;
+}
+</style>
+
+	<script src="js/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(e){
+		$("#modal-window-login").hide();
+		
+		$("#cad").onClick(function(e){
+			$("#modal-window-login").fadeOut(1000);
+		});
+		
+		
+	});
+		
+		
+	}
+
+</script>
 </h:head>
 <h:body>
+	<h:outputText value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
+<div id="modal-window-login">
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+					
+			<p:outputLabel value="Email:" for="email"></p:outputLabel>
+			<h:inputText id="email" value="#{loginBean.login}">
+				<f:validator validatorId="emailValidator"></f:validator>
+			
+			</h:inputText>
+			<p:outputLabel value="Senha:" for="senha"></p:outputLabel>
+			<h:inputText id="senha" value="#{loginBean.senha}"></h:inputText>
+			  
+			<h:commandButton value="Login" action="#{loginBean.logar}" update="growl" ></h:commandButton>
+		</h:form>
+
+	</div>
+	<h:form style="width:100%;">
+		<p:menubar>
+			<p:menuitem value="Home"></p:menuitem>
+			<p:submenu label="File">
+				<p:submenu label="Open">
+				<p:menuitem value="#{categoriaBean.categorias}" var="c"> 
+					<p:menuitem value="#{c}" itemLabel="#{c.nome}"></p:menuitem>
+				</p:menuitem>
+					
+				</p:submenu>
+				<p:menuitem value="Edit"></p:menuitem>
+				<p:separator />
+				<p:menuitem value="Exit"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Help">
+				<p:menuitem value="About JournalDev"></p:menuitem>
+				<p:menuitem value="Contact Us"></p:menuitem>
+				<p:separator />
+				<p:menuitem value="Help"></p:menuitem>
+			</p:submenu>
+		</p:menubar>
+	</h:form>
 
 
+	
 
 
-<h:form>  
-    <p:growl id="messages"/>
- 
-    <p:menubar>
-        <p:submenu label="File" icon="ui-icon-document">
-            <p:submenu label="New" icon="ui-icon-contact">
-                <p:menuitem value="Project" url="#" />
-                <p:menuitem value="Other" url="#" />
-            </p:submenu>
-            <p:menuitem value="Open" url="#" />
-            <p:separator />
-            <p:menuitem value="Quit" url="#" />
-        </p:submenu>
- 
-        <p:submenu label="Edit" icon="ui-icon-pencil">
-            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
-            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
-        </p:submenu>
- 
-        <p:submenu label="Help" icon="ui-icon-help">
-            <p:menuitem value="Contents" url="#" />
-            <p:submenu label="Search" icon="ui-icon-search">
-                <p:submenu label="Text">
-                    <p:menuitem value="Workspace" url="#" />
-                </p:submenu>
-                <p:menuitem value="File" url="#" />
-            </p:submenu>
-        </p:submenu>
- 
-        <p:submenu label="Actions" icon="ui-icon-gear">
-            <p:submenu label="Ajax" icon="ui-icon-refresh">
-                <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" update="messages"/>
-                <p:menuitem value="Update" actionListener="#{menuView.update}" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
-            </p:submenu>
-            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
-                <p:menuitem value="Delete" actionListener="#{menuView.delete}" icon="ui-icon-close" update="messages" ajax="false"/>
-            </p:submenu>
-        </p:submenu>
- 
-        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />
- 
-        <f:facet name="options">
-            <p:inputText style="margin-right:10px" placeholder="Search"/>
-            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+	<div>
+		<ul>
+			<li><h:outputLink value="#home">Home</h:outputLink></li>
+			<li><h:outputLink value="#categoria.jsf">Produtos</h:outputLink></li>
+			<li><h:selectOneMenu value="#{categoriaBean.categoria}">
+					<f:selectItem itemLabel="Selecione a categoria..."></f:selectItem>
+					<f:selectItems value="#{categoriaBean.categorias}" var="c"
+						itemLabel="#{c.nome}" itemValue="#{c}">
+					</f:selectItems>
+				</h:selectOneMenu></li>
+			<li><h:form id="form">
+					<h:inputText></h:inputText>
+					<h:commandButton class="btn" value="Pesquisar" type="submit" />
+				</h:form></li>
+			<li><h:outputLink value="#contato">Contato</h:outputLink></li>
+			<li><h:outputLink id="cad" value="#contato">Login / Cadastre-se</h:outputLink></li>
+		</ul>
+	</div>
+
+	<hr></hr>
+
+
+	<h:form>
+		<p:dataGrid var="produto" value="#{dataGridView.produtos}" columns="3"
+			layout="grid" rows="12" paginator="true" id="produtos"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="6,12,16">
+
+			<f:facet name="header">
+        	Ultimos Lançamentos
         </f:facet>
-    </p:menubar>
-</h:form>
+
+			<p:panel header="#{produto.id}" style="text-align:center">
+				<h:panelGrid columns="1" style="width:100%">
+					<img src="#{produto.image}" width="140px" height="80px" />
+					<h:form>
+						<h:outputText value="#{produto.nome}" />
+						<h:inputHidden value="#{produtoBean.produto.nome}" />
+						<h:outputText value="#{produto.descricao}" />
+						<h:inputHidden value="#{produtoBean.produto.descricao}" />
+						<h:outputText value="R$ #{produto.preco}" />
+						<h:inputHidden value="#{produtoBean.produto.preco}" />
+						<h:commandButton value="Add to Car"
+							action="#{carrinhoBean.salvar}"></h:commandButton>
+					</h:form>
+				</h:panelGrid>
+			</p:panel>
+
+		</p:dataGrid>
+
+		<p:dialog header="Produto Info" widgetVar="produtoDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="produtoDetail" style="text-align:center;">
+				<p:panelGrid columns="2" rendered="#{dataGridView.selectedProduto}"
+					columnClasses="label,value">
+					<f:facet name="header">
+						<img src="#{dataGridView.selectedProduto.image}" width="140px"
+							height="80px" />
+					</f:facet>
+
+					<h:outputText value="Id:" />
+					<h:outputText value="#{dataGridView.selectedProduto.id}" />
+
+					<h:outputText value="Year" />
+					<h:outputText value="#{dataGridView.selectedProduto.nome}" />
+
+					<h:outputText value="Color:" />
+					<h:outputText value="#{dataGridView.selectedProduto.descricao}" />
+
+					<h:outputText value="Preço" />
+					<h:outputText value="$#{dataGridView.selectedProduto.preco}" />
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
 
 
 
 
-<h:outputLink value="#home" >Home</h:outputLink>
-<h:outputLink value="#categoria.jsf" >Produtos</h:outputLink>
-<h:outputLink value="#sobre" >Categorias</h:outputLink>
-<h:form>
-<h:inputText></h:inputText>
-<h:commandButton value="Pesquisar" type="submit" />
-</h:form>
-<h:outputLink value="#contato" >Contato</h:outputLink>
-<h:outputLink value="#cadastro" >Cadastre-se</h:outputLink>
-
-
-<hr></hr>
-<!-- 
-
-<h:form id="form">
-    <p:carousel value="#{carouselView.produtos}" headerText="Últimos Lançamentos" var="produto" itemStyle="text-align:center" responsive="true">
-        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
-            <f:facet name="header">
-                   <h:outputText value="Id:" />
-            </f:facet>
- 
-         
-            <h:outputText value="#{produto.codigo}" />
- 
-            
-        </p:panelGrid>
- 
-        <f:facet name="footer">
-               Rodapé
-        </f:facet>
-    </p:carousel>
-   </h:form> 
- -->
- 
- 
 
 </h:body>
 </html>

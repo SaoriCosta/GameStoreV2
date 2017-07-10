@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+
+import org.hibernate.Session;
 
 import br.com.gamestorev2.databasemaneger.DatabaseManager;
 import br.com.gamestorev2.entidades.Produto;
@@ -48,6 +51,7 @@ public class ProdutoRepository implements Serializable{
 		
 		em.getTransaction().begin();
 		em.persist(produtos);
+		em.flush();
 		em.getTransaction().commit();
 		em.close();
 	
@@ -56,14 +60,31 @@ public class ProdutoRepository implements Serializable{
 	public static Produto getByCodigo(String codigo){
 		EntityManagerFactory emf  =	DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
-		
+		Produto produto = null;
+		System.out.println("codigoooooooooooo ::::::::  "+codigo);
+		try{
 		em.getTransaction().begin();
 		String sql ="SELECT o FROM Produto o WHERE codigo='"+codigo+"'"; 
-		Produto produto = em.createQuery(sql,Produto.class).getSingleResult();
+		produto = em.createQuery(sql,Produto.class).getSingleResult();
 		em.getTransaction().commit();
 		em.close();
-		
+		}catch(NoResultException e){
+			
+		}
 		return produto;
+	}
+
+	public static void update(Produto produto) {
+		EntityManagerFactory emf = DatabaseManager.getEmf();
+		EntityManager em = emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		em.merge(produto);
+	
+		em.flush();
+		em.getTransaction().commit();
+		em.close();
+
 	}
 	
 	

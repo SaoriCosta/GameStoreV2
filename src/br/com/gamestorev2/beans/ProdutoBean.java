@@ -2,11 +2,16 @@ package br.com.gamestorev2.beans;
 
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
 import br.com.gamestorev2.entidades.Categoria;
 import br.com.gamestorev2.entidades.Produto;
 import br.com.gamestorev2.repository.CategoriaRepository;
 import br.com.gamestorev2.repository.ProdutoRepository;
 
+@ManagedBean
+@ViewScoped
 public class ProdutoBean {
 	
 	private Produto produto;
@@ -32,12 +37,18 @@ public class ProdutoBean {
 			return "/admin/produtos.jsf";
 		}
 		
-		return "/admin/index.jsf";
+		ProdutoRepository.update(getProduto());
+		return "/admin/produtos.jsf";
 		
 	}
 	
 	public List<Produto> getProdutos(){
 		return ProdutoRepository.getProdutos();
+	}
+	
+	public String carregar(Produto produto){
+		setProduto(produto);
+		return "/edit-info.jsf";
 	}
 	
 	
