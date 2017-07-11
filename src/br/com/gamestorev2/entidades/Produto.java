@@ -23,7 +23,12 @@ public class Produto implements Serializable{
 	private int id;
 	private String nome;
 	private String descricao;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER,cascade={
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+           // CascadeType.PERSIST
+	},targetEntity = Produto.class)
 	private List<Categoria> categorias;
 	private double preco;
 	

@@ -13,27 +13,39 @@
 <h:body>
 	<h:outputText value="#{loginBean.usuario.nome}"></h:outputText>
 
-	<h:form>
+  <p:panel id="basic" header="Basic" footer="Movie Details" style="margin-bottom:20px">
+        <h:panelGrid columns="2" cellpadding="10">
+            
+            
+	<h:form id="formulario">
 	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-		<h:outputLabel>Nome : </h:outputLabel>
-		<h:inputText value="#{produtoBean.produto.nome}"></h:inputText>
-		<h:outputLabel>Descrição : </h:outputLabel>
-		<h:inputText value="#{produtoBean.produto.descricao}"></h:inputText>
+	<h:panelGrid columns="2" cellpadding="1">
+		<h:outputLabel for="nome" value="Nome:"></h:outputLabel>
+		<p:inputText id="nome" value="#{produtoBean.produto.nome}"></p:inputText>
+		<h:outputLabel for="desc" value="Descrição:"></h:outputLabel>
+		<p:inputText id="desc" value="#{produtoBean.produto.descricao}"></p:inputText>
 		
-		<p:selectManyMenu value="#{produtoBean.produto.categorias}">
+		<h:outputLabel for="cat" value="Categorias:"></h:outputLabel>
+		<p:selectManyMenu id="cat" value="#{produtoBean.produto.categorias}">
 			<f:converter converterId="categoriaConverter" />
 			<f:selectItems value="#{categoriaBean.categorias}" var="c"
 				itemLabel="#{c.nome}" itemValue="#{c}" required="true">
 			</f:selectItems>
 		</p:selectManyMenu>
 		
-		<h:inputText value="#{produtoBean.produto.preco}"></h:inputText>
+		<p:outputLabel for="preco" value="Preço:"> </p:outputLabel> 
+		<h:inputText id="preco" value="#{produtoBean.produto.preco}"></h:inputText>
 		<h:inputText value="#{produtoBean.produto.codigo}"></h:inputText>
 
 		<h:commandButton value="Salvar" action="#{produtoBean.save}"></h:commandButton>
+		 </h:panelGrid> 
 	</h:form>
-	
-		<p:dataTable value="#{produtoBean.produtos}" var="p">
+          
+        </h:panelGrid>
+    </p:panel>
+
+	<hr></hr>
+		<p:dataTable value="#{produtoBean.produtos}" var="p" id="table">
 		<p:column headerText="ID">
 			<h:outputText value="#{p.id}" />
 		</p:column>
@@ -51,15 +63,14 @@
 		</p:column>
 		<p:column>
 			<h:form>
-				<h:commandButton value="Editar" action="#{produtoBean.carregar(p)}">
-				</h:commandButton>
+				<p:commandButton value="Editar"  type="submit" update="formulario" actionListener="#{produtoBean.carregar(p)}">
+				</p:commandButton>
 			</h:form>
 		</p:column>
 		<p:column>
 			<h:form>
-				<h:commandButton value="Remover">
-				  <f:param name="action" value="#{p}" />
-				  </h:commandButton>
+				<p:commandButton value="Deletar"  type="submit" update="table" actionListener="#{produtoBean.delete(p)}">
+				</p:commandButton>
 			</h:form>
 		</p:column>
 		

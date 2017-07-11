@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 
@@ -85,6 +86,18 @@ public class ProdutoRepository implements Serializable{
 		em.getTransaction().commit();
 		em.close();
 
+	}
+	
+	public static void delete(Produto produto){
+		EntityManagerFactory emf = DatabaseManager.getEmf();
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		
+		String sql = "delete from Produto WHERE id="+produto.getId();
+		Query query = em.createNativeQuery(sql);
+		query.executeUpdate();
+		em.getTransaction().commit();
+		em.close();
 	}
 	
 	

@@ -49,6 +49,11 @@ public class ProdutoBean {
 		return "/admin/produtos.jsf";
 	}
 	
+	public String delete(Produto produto){
+		ProdutoRepository.delete(produto);
+		System.out.println("deletado");
+		return "/admin/produtos.jsf";
+	}
 	
 
 }
