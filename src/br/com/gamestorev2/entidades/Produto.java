@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+
 
 @Entity
 public class Produto implements Serializable{
@@ -23,12 +25,7 @@ public class Produto implements Serializable{
 	private int id;
 	private String nome;
 	private String descricao;
-	@ManyToMany(fetch = FetchType.EAGER,cascade={
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-           // CascadeType.PERSIST
-	},targetEntity = Produto.class)
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Categoria> categorias;
 	private double preco;
 	

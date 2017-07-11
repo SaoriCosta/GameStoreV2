@@ -150,8 +150,8 @@ ul li {
 						<h:inputHidden value="#{produtoBean.produto.descricao}" />
 						<h:outputText value="R$ #{produto.preco}" />
 						<h:inputHidden value="#{produtoBean.produto.preco}" />
-						<h:commandButton value="Add to Car"
-							action="#{carrinhoBean.salvar}"></h:commandButton>
+						<h:commandButton value="Add to Cart"
+							action="#{carrinhoBean.salvar(produto)}"></h:commandButton>
 					</h:form>
 				</h:panelGrid>
 			</p:panel>

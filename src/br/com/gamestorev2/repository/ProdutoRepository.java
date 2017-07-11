@@ -5,14 +5,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.FlushModeType;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import org.hibernate.Session;
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import br.com.gamestorev2.databasemaneger.DatabaseManager;
 import br.com.gamestorev2.entidades.Produto;
-import br.com.gamestorev2.entidades.Usuario;
 
 public class ProdutoRepository implements Serializable{
 
@@ -41,7 +42,7 @@ public class ProdutoRepository implements Serializable{
 		
 		em.getTransaction().begin();
 		em.persist(produto);
-		
+		em.flush();
 		em.getTransaction().commit();
 		em.close();
 
@@ -60,19 +61,23 @@ public class ProdutoRepository implements Serializable{
 	}
 	
 	public static Produto getByCodigo(String codigo){
+		
+		System.out.println("passa");
 		EntityManagerFactory emf  =	DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
 		Produto produto = null;
 		System.out.println("codigoooooooooooo ::::::::  "+codigo);
-		try{
 		em.getTransaction().begin();
+		try{
+		
 		String sql ="SELECT o FROM Produto o WHERE codigo='"+codigo+"'"; 
 		produto = em.createQuery(sql,Produto.class).getSingleResult();
 		em.getTransaction().commit();
-		em.close();
+		
 		}catch(NoResultException e){
 			
 		}
+		em.close();
 		return produto;
 	}
 

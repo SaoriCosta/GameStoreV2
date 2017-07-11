@@ -26,18 +26,18 @@
 		<p:inputText id="desc" value="#{produtoBean.produto.descricao}"></p:inputText>
 		
 		<h:outputLabel for="cat" value="Categorias:"></h:outputLabel>
-		<p:selectManyMenu id="cat" value="#{produtoBean.produto.categorias}">
+		<p:selectManyCheckbox id="cat" value="#{produtoBean.produto.categorias}">
 			<f:converter converterId="categoriaConverter" />
 			<f:selectItems value="#{categoriaBean.categorias}" var="c"
 				itemLabel="#{c.nome}" itemValue="#{c}" required="true">
 			</f:selectItems>
-		</p:selectManyMenu>
+		</p:selectManyCheckbox>
 		
 		<p:outputLabel for="preco" value="Preço:"> </p:outputLabel> 
 		<h:inputText id="preco" value="#{produtoBean.produto.preco}"></h:inputText>
 		<h:inputText value="#{produtoBean.produto.codigo}"></h:inputText>
 
-		<h:commandButton value="Salvar" action="#{produtoBean.save}"></h:commandButton>
+		<p:commandButton value="Salvar" type="submit" update="table" action="#{produtoBean.save}"></p:commandButton>
 		 </h:panelGrid> 
 	</h:form>
           

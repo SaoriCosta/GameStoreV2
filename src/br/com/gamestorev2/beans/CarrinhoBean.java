@@ -50,13 +50,16 @@ public class CarrinhoBean {
 		public CarrinhoBean(){
 			carrinho = new Carrinho();
 		}
-		public String salvar(){
+		public String salvar(Produto produto){
+			
 			if(CarrinhoRepository.getCarByUser(user)==null){
+				carrinho.getProduto().add(produto);;
 				CarrinhoRepository.setCarrinho(carrinho);
 				setCarrinho(new Carrinho());
 				return "/index.jsf";
 			}
-				 
+			carrinho = CarrinhoRepository.getCarByUser(user);
+			carrinho.getProduto().add(produto);	 
 			return "/admin/index.jsf";
 		}
 

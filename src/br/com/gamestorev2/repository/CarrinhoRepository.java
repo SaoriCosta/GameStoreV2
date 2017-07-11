@@ -35,22 +35,22 @@ public class CarrinhoRepository implements Serializable{
 	}
 	
 	public static Carrinho getCarByUser(Usuario user){
-		
-		EntityManagerFactory emf = DatabaseManager.getEmf();
-		EntityManager em = emf.createEntityManager();
-		Carrinho car = null;
-		try{
-		em.getTransaction().begin();
-		String sql = "SELECT o FROM Carrinho o Where usuario.id = "+user.getId();
-		car = em.createQuery(sql,Carrinho.class).getSingleResult();
-		em.getTransaction().commit();
-		em.close();
-		
+		if(user!=null){
+			EntityManagerFactory emf = DatabaseManager.getEmf();
+			EntityManager em = emf.createEntityManager();
+			Carrinho car = null;
+			try{
+				em.getTransaction().begin();
+				String sql = "SELECT o FROM Carrinho o Where usuario.id = "+user.getId();
+				car = em.createQuery(sql,Carrinho.class).getSingleResult();
+				em.getTransaction().commit();
+				em.close();
 		}catch(NoResultException r){
 			
 		}
-		
-		return car;
+			return car;
+		}else return null;
+	
 	}
 	
 	public static void update(){

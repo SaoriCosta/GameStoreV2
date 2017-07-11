@@ -28,6 +28,7 @@ public class ProdutoBean {
 	}
 	
 	public String save(){
+		System.out.println("eita po");
 		if(ProdutoRepository.getByCodigo(getProduto().getCodigo())==null){
 			ProdutoRepository.setProduto(produto);
 			setProduto(new Produto());
@@ -35,6 +36,7 @@ public class ProdutoBean {
 			return "/admin/produtos.jsf";
 		}
 		
+		System.out.println("Vai atualizar");
 		ProdutoRepository.update(getProduto());
 		return "/admin/produtos.jsf";
 		
