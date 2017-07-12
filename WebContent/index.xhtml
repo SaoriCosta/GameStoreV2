@@ -37,16 +37,6 @@ ul li {
 	border-radius: 0px;
 }
 
-#modal-window-login {
-	background: #1565c0;
-	height: 100px;
-	padding: 2em; margin : 0;
-	border-top-left-radius: 21%;
-	border-top-right-radius: 21%;
-	color: #fff;
-	margin: 0
-}
-
 #form {
 	margin-top: 5%;
 }
@@ -54,6 +44,11 @@ ul li {
 .ui-widget, .ui-widget .ui-widget {
 	font-family: sans-serif;
 }
+
+#filtro-cat {
+	
+}
+
 </style>
 
 	<script src="js/jquery.min.js"></script>
@@ -69,31 +64,38 @@ ul li {
 	</script>
 </h:head>
 <h:body>
-	
-<p:layoutUnit style="border:1px solid #fff;">
-  <ui:include src="/template/top_menu.xhtml"></ui:include>
-</p:layoutUnit>
 
-
-
-	<img src="images/Callofduty.png" style="width:100%;"/>
+	<p:layoutUnit style="border:1px solid #fff;">
+		<ui:include src="/template/top_menu.xhtml"></ui:include>
+	</p:layoutUnit>
 
 	<hr></hr>
 
 	<h:form>
-		<p:outputLabel value="Filtar Por: " for="cat_select" />
+		<p:outputLabel value="Filtrar Por: " for="cat_select" />
 		<h:selectOneMenu id="cat_select" value="#{categoriaBean.categoria}">
 			<f:selectItem itemLabel="Selecione a categoria..."></f:selectItem>
 			<f:selectItems value="#{categoriaBean.categorias}" var="c"
 				itemLabel="#{c.nome}" itemValue="#{c}">
 			</f:selectItems>
 		</h:selectOneMenu>
+		<h:commandButton
+			style="
+						 	background:#000;/*#1565c0*/
+						 	color:#fff;
+						 	padding:0.5%;
+						 	border:none;
+						 	cursor:pointer;
+						 	border-radius:1px;"
+			value="Filtrar" />
 	</h:form>
 
 
 
 
 	<hr></hr>
+
+
 	<h:form>
 		<p:dataGrid var="produto" value="#{dataGridView.produtos}" columns="5"
 			layout="grid" rows="12" paginator="true" id="produtos"
@@ -107,16 +109,25 @@ ul li {
 			<p:panel header="#{produto.id}" style="text-align:center">
 				<h:panelGrid columns="1" style="width:100%">
 					<img src="#{produto.image}" width="140px" height="80px" />
-					
-						<h:outputText value="#{produto.nome}" /><br></br>
-						
-						<h:outputText value="#{produto.descricao}" /><br></br>
-						
-						<h:outputText value="R$ #{produto.preco}" /><br></br>
-						
-						<p:commandButton id="add#{produto.id}" type="submit" value="Add to Cart"
-							actionListener="#{produtoBean.add(produto)}"></p:commandButton>
-					
+
+					<h:outputText value="#{produto.nome}" />
+					<br></br>
+
+					<h:outputText value="#{produto.descricao}" />
+					<br></br>
+
+					<h:outputText value="R$ #{produto.preco}" />
+					<br></br>
+
+					<p:commandButton id="add#{produto.id}" type="submit"
+						onclick="alert('Produto adicionado ao carrinho')"
+						value="Add to Cart" actionListener="#{produtoBean.add(produto)}"
+						update="cart" style="
+									  background:#000;
+									  color:#fff;
+									  border:none;"
+						icon="ui-icon-cart"></p:commandButton>
+
 				</h:panelGrid>
 			</p:panel>
 
@@ -147,6 +158,10 @@ ul li {
 			</p:outputPanel>
 		</p:dialog>
 	</h:form>
+
+	<img src="images/Callofduty.png" style="width: 100%;" />
+
+
 
 
 

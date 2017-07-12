@@ -18,6 +18,7 @@ public class VendaRepository implements Serializable{
 		
 		em.getTransaction().begin();
 		em.persist(venda);
+		em.flush();
 		em.getTransaction().commit();
 		em.close();
 	}

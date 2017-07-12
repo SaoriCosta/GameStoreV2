@@ -11,9 +11,9 @@
 <title>Insert title here</title>
 </h:head>
 <h:body>
-	<h:outputText value="#{loginBean.usuario.nome}"></h:outputText>
+<ui:include src="/admin/template-admin/template-menu.xhtml"></ui:include>
 
-  <p:panel id="basic" header="Basic" footer="Movie Details" style="margin-bottom:20px">
+  <p:panel id="basic" header="Cadastrar Produto" footer="Movie Details" style="margin-bottom:20px">
         <h:panelGrid columns="2" cellpadding="10">
             
             
@@ -35,9 +35,10 @@
 		
 		<p:outputLabel for="preco" value="Preço:"> </p:outputLabel> 
 		<h:inputText id="preco" value="#{produtoBean.produto.preco}"></h:inputText>
-		<h:inputText value="#{produtoBean.produto.codigo}"></h:inputText>
-
-		<p:commandButton value="Salvar" type="submit" update="table" action="#{produtoBean.save}"></p:commandButton>
+		<p:outputLabel for="codigo" value="Codigo:"> </p:outputLabel> 
+		<h:inputText id="codigo" value="#{produtoBean.produto.codigo}"></h:inputText>
+		<p:outputLabel for="button" value=""> </p:outputLabel>
+		<p:commandButton id="button" value="Salvar" type="submit" update="table" action="#{produtoBean.save}"></p:commandButton>
 		 </h:panelGrid> 
 	</h:form>
           

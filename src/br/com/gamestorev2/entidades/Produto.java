@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cascade;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -25,7 +23,7 @@ public class Produto implements Serializable{
 	private int id;
 	private String nome;
 	private String descricao;
-	@OneToMany(fetch = FetchType.EAGER,cascade= {CascadeType.DETACH,
+	@ManyToMany(fetch = FetchType.EAGER,cascade= {CascadeType.DETACH,
 			CascadeType.REFRESH})
 	private List<Categoria> categorias;
 	private double preco;

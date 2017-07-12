@@ -61,7 +61,7 @@ public String logar(){
 	Usuario usuarioLogado = UsuarioRepository.getByLoginSenha(getLogin(), getSenha());
 	
 		if(usuarioLogado == null){
-			String messageSumary = "Login ou senha inválidos";
+			String messageSumary = "Login ou senha invï¿½lidos";
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, messageSumary, "");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			System.out.println(messageSumary + " - " + login + " - " + senha);
@@ -81,9 +81,9 @@ public String logar(){
 
 }
 
-public String deslogar(){
+public String getDeslogar(){
 	setUsuario(null);
-	return "index.jsf";
+	return "/index.jsf";
 	
 }
 

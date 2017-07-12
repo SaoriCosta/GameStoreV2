@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
->
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
 
-<style>
+	<style>
 html {
 	font-family: sans-serif;
 }
@@ -26,7 +26,7 @@ ul li {
 .btn {
 	background: #000;
 	color: #fff;
-	padding: 2.4%;
+	padding: 0.9%;
 	border: none;
 	border-bottom-right-radius: 5px;
 	border-top-right-radius: 5px;
@@ -40,19 +40,22 @@ ul li {
 }
 
 #modal-window-login {
-	background: #1565c0;
+	background:#424242 ;/*#1565c0*/
 	height: 100px;
-	padding: 2em; margin : 0;
-	border-top-left-radius: 21%;
-	border-top-right-radius: 21%;
+	padding: 2em;
+	margin: 0;
+	border-top-left-radius: 27%;
 	color: #fff;
 	margin: 0
 }
 
 #form {
-	margin-top: 5%;
+	margin-top: 4%;
 }
 
+#cart{
+color:blue;
+}
 
 .ui-widget, .ui-widget .ui-widget {
 	font-family: sans-serif;
@@ -75,12 +78,10 @@ ul li {
 <h:body>
 
 
-<div>
+	<div>
 		<div class="ui-g">
-			<div class="ui-g-4">
-				<h:outputText value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
-			</div>
-			<div class="ui-g-8">
+		
+			<div class="ui-g-9">
 
 				<h:form>
 					<p:messages id="messages" showDetail="true" autoUpdate="true"
@@ -97,9 +98,14 @@ ul li {
 					<h:commandButton value="Login" action="#{loginBean.logar}"
 						update="growl"></h:commandButton>
 				</h:form>
-
-
+				
+					<p:link id="cart"  value="Carrinho: #{carrinhoBean.cartSize}" outcome="/carrinho.jsf"></p:link>
+				
 			</div>
+				<div class="ui-g-3">
+				<h:outputText value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
+			</div>
+
 		</div>
 	</div>
 
@@ -114,24 +120,31 @@ ul li {
 
 
 				<h:form id="form">
-					<p:inputText placeholder="Digite o que você procura.."
-						class="inputTextSearch"></p:inputText>
+					<h:inputText a:placeholder="Digite o que você procura.."
+						class="inputTextSearch"></h:inputText>
 					<p:commandButton class="btn" icon="ui-icon-search" type="submit" />
 				</h:form>
 			</div>
-			<div class="ui-g-2"></div>
+			<div class="ui-g-3"></div>
 
 		</div>
 
 	</div>
 	<h:form style="width:100%;">
-		<p:menubar style="background:#000;">
+		<p:menubar style="background:#000;border:none;border-radius:3px;">
+			
 			<p:menuitem style="color:#fff;" value="Home" icon="ui-icon-home"></p:menuitem>
-			<p:menuitem style="color:#fff;" value="Produtos" icon="ui-icon-tag">
-
-			</p:menuitem>
+			<p:menuitem style="color:#fff;" value="Produtos" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="Ação" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="Aventura" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="Terror" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="XBOX" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="PS3" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="PS4" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="PC" icon="ui-icon-tag" ></p:menuitem>
+			<p:menuitem style="color:#fff;" value="Promoções" icon="ui-icon-tag" ></p:menuitem>
 			<p:menuitem value=""></p:menuitem>
-			<p:submenu  style="color:#fff;" label="#algo">
+			<p:submenu style="color:#fff;" label="#algo">
 				<p:submenu label="Open">
 
 					<p:menuitem value="#{categoriaBean.categorias}" var="c">
@@ -143,7 +156,7 @@ ul li {
 				<p:separator />
 				<p:menuitem value="Exit"></p:menuitem>
 			</p:submenu>
-			<p:submenu  style="color:#fff;" label="Help">
+			<p:submenu style="color:#fff;" label="Help">
 				<p:menuitem value="About JournalDev"></p:menuitem>
 				<p:menuitem value="Contact Us"></p:menuitem>
 				<p:separator />
