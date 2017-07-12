@@ -95,7 +95,7 @@ ul li {
 
 	<hr></hr>
 	<h:form>
-		<p:dataGrid var="produto" value="#{dataGridView.produtos}" columns="3"
+		<p:dataGrid var="produto" value="#{dataGridView.produtos}" columns="5"
 			layout="grid" rows="12" paginator="true" id="produtos"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="6,12,16">
@@ -107,16 +107,16 @@ ul li {
 			<p:panel header="#{produto.id}" style="text-align:center">
 				<h:panelGrid columns="1" style="width:100%">
 					<img src="#{produto.image}" width="140px" height="80px" />
-					<h:form>
+					
 						<h:outputText value="#{produto.nome}" /><br></br>
 						
 						<h:outputText value="#{produto.descricao}" /><br></br>
 						
 						<h:outputText value="R$ #{produto.preco}" /><br></br>
 						
-						<h:commandButton value="Add to Cart"
-							action="#{produtoBean.add(produto)}"></h:commandButton>
-					</h:form>
+						<p:commandButton id="add#{produto.id}" type="submit" value="Add to Cart"
+							actionListener="#{produtoBean.add(produto)}"></p:commandButton>
+					
 				</h:panelGrid>
 			</p:panel>
 

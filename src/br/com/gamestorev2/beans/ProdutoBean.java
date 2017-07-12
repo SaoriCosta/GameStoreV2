@@ -77,6 +77,8 @@ public class ProdutoBean {
 	}
 	
 	public String add(Produto produto){
+		System.out.println("ID DO PRODUTO:: "+ produto.getId());
+		
 		if(CarrinhoRepository.getCarByUser(user)==null){
 			Carrinho cart = new Carrinho();
 			List<Produto> list =  new ArrayList<>();
@@ -95,6 +97,7 @@ public class ProdutoBean {
 		cart.setPreco_acumulado(cart.getPreco_acumulado()+produto.getPreco());
 		cart.setProduto(list);
 		CarrinhoRepository.update(cart);
+		
 		return "/carrinho.jsf";
 		
 	}

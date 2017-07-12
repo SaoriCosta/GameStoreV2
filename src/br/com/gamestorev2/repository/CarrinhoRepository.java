@@ -41,7 +41,7 @@ public class CarrinhoRepository implements Serializable{
 			Carrinho car = null;
 			try{
 				em.getTransaction().begin();
-				String sql = "SELECT o FROM Carrinho o Where usuario.id = "+user.getId();
+				String sql = "SELECT o FROM Carrinho o Where usuario_id = "+user.getId();
 				car = em.createQuery(sql,Carrinho.class).getSingleResult();
 				em.getTransaction().commit();
 				em.close();
@@ -59,6 +59,7 @@ public class CarrinhoRepository implements Serializable{
 		
 		em.getTransaction().begin();
 		em.merge(carrinho);
+		em.flush();
 		em.getTransaction().commit();
 		em.close();
 		

@@ -36,7 +36,7 @@ ul li {
 	padding: 2%;
 	width: 85%;
 	border: none;
-	border-radius: 0px;
+	border-radius: 3px;
 }
 
 #modal-window-login {
@@ -52,6 +52,7 @@ ul li {
 #form {
 	margin-top: 5%;
 }
+
 
 .ui-widget, .ui-widget .ui-widget {
 	font-family: sans-serif;
@@ -76,10 +77,10 @@ ul li {
 
 <div>
 		<div class="ui-g">
-			<div class="ui-g-5">
+			<div class="ui-g-4">
 				<h:outputText value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
 			</div>
-			<div class="ui-g-7">
+			<div class="ui-g-8">
 
 				<h:form>
 					<p:messages id="messages" showDetail="true" autoUpdate="true"
@@ -124,13 +125,13 @@ ul li {
 
 	</div>
 	<h:form style="width:100%;">
-		<p:menubar>
-			<p:menuitem value="Home" icon="ui-icon-home"></p:menuitem>
-			<p:menuitem value="Produtos" icon="ui-icon-tag">
+		<p:menubar style="background:#000;">
+			<p:menuitem style="color:#fff;" value="Home" icon="ui-icon-home"></p:menuitem>
+			<p:menuitem style="color:#fff;" value="Produtos" icon="ui-icon-tag">
 
 			</p:menuitem>
 			<p:menuitem value=""></p:menuitem>
-			<p:submenu label="#algo">
+			<p:submenu  style="color:#fff;" label="#algo">
 				<p:submenu label="Open">
 
 					<p:menuitem value="#{categoriaBean.categorias}" var="c">
@@ -142,7 +143,7 @@ ul li {
 				<p:separator />
 				<p:menuitem value="Exit"></p:menuitem>
 			</p:submenu>
-			<p:submenu label="Help">
+			<p:submenu  style="color:#fff;" label="Help">
 				<p:menuitem value="About JournalDev"></p:menuitem>
 				<p:menuitem value="Contact Us"></p:menuitem>
 				<p:separator />

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -17,7 +18,7 @@ public class Carrinho {
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToMany(fetch = FetchType.EAGER,cascade= {
+	@ManyToMany(fetch = FetchType.EAGER,cascade= {
 			
 			CascadeType.DETACH,
 			CascadeType.REFRESH

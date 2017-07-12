@@ -59,10 +59,21 @@ public class CarrinhoBean {
 				return "/index.jsf";
 			}
 			carrinho = CarrinhoRepository.getCarByUser(user);
-			carrinho.getProduto().add(produto);	 
+			carrinho.getProduto().add(produto);
+			CarrinhoRepository.setCarrinho(carrinho);
 			return "/admin/index.jsf";
 		}
-
+		
+		public Carrinho getcartUser(){
+			Carrinho aux = CarrinhoRepository.getCarByUser(user);
+			if(aux==null){
+				return carrinho;
+			}
+			return aux;
+			
+		}
+		
+		
 		public Usuario getUser() {
 			return user;
 		}

@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
-<body>
-	oi
-		
-</body>
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+
+	<p:layoutUnit style="border:1px solid #fff;">
+		<ui:include src="/template/top_menu.xhtml"></ui:include>
+	</p:layoutUnit>
+
+	<h2>
+		Carrinho de
+		<h:outputText value="#{loginBean.usuario.nome}"></h:outputText>
+	</h2>
+
+	<p:dataTable value="#{carrinhoBean.cartUser.produto}" var="p"
+		paginator="true">
+		<p:column headerText="Codigo">
+			<h:outputText value="#{p.codigo}">
+			</h:outputText>
+		</p:column>
+		<p:column headerText="Nome">
+			<h:outputText value="#{p.nome}">
+			</h:outputText>
+		</p:column>
+		<p:column headerText="Preco">
+			<h:outputText value="#{p.preco}">
+			</h:outputText>
+		</p:column>
+
+	</p:dataTable>
+	<div class="ui-g-8"></div>
+	<div class="ui-g-2">
+		<h:outputText
+			value="Preço Total : #{carrinhoBean.cartUser.preco_acumulado}">
+		</h:outputText>
+	</div>
+	<div class="ui-g-2">
+	<p:commandButton style="background:#1565c0;color:#fff;"
+		value="Finalizar Compra" type="submit">
+	</p:commandButton>
+	</div>
+</h:body>
 </html>
