@@ -73,6 +73,14 @@ public class CarrinhoBean {
 			
 		}
 		
+		public Carrinho getcartUser2(Usuario user){
+			Carrinho aux = CarrinhoRepository.getCarByUser(user);
+			if(aux==null){
+				return carrinho;
+			}
+			return aux;
+			
+		}
 		public int getcartSize(){
 			Carrinho aux = CarrinhoRepository.getCarByUser(user);
 			if(aux==null){

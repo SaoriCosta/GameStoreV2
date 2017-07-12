@@ -38,6 +38,7 @@ public class VendaRepository implements Serializable{
 	public static List<Venda> getVendas(){
 		EntityManagerFactory emf  =	DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 		String sql = "SELECT o FROM Venda o";
 		List<Venda> vendas = em.createQuery(sql,Venda.class).getResultList();
 		em.getTransaction().commit();
