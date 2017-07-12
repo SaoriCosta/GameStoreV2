@@ -8,10 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Cascade;
 
 
 
@@ -22,7 +20,7 @@ public class Venda {
 	@GeneratedValue
 	private int id;
 	private Date data;
-	@OneToMany(fetch = FetchType.EAGER,cascade = {
+	@ManyToMany(fetch = FetchType.EAGER,cascade = {
 			CascadeType.DETACH,
 			CascadeType.REFRESH
 			

@@ -2,11 +2,13 @@ package br.com.gamestorev2.beans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.gamestorev2.entidades.Carrinho;
 import br.com.gamestorev2.entidades.Produto;
@@ -23,6 +25,7 @@ public class CarrinhoBean {
 		@ManagedProperty("#{produtoBean.produto}")
 		private Produto produto;
 		
+		public Usuario aux = new Usuario();
 		@PostConstruct
 		private void init(){
 			carrinho = new Carrinho();
@@ -73,7 +76,7 @@ public class CarrinhoBean {
 			
 		}
 		
-		public Carrinho getcartUser2(Usuario user){
+		private Carrinho getcartUser2(Usuario user){
 			Carrinho aux = CarrinhoRepository.getCarByUser(user);
 			if(aux==null){
 				return carrinho;
@@ -81,6 +84,17 @@ public class CarrinhoBean {
 			return aux;
 			
 		}
+		
+		public String setUseraux(Usuario user){
+			this.aux = user;
+			System.out.println("---------"+this.aux.getNome());
+			return "";
+		}
+		
+		public Carrinho getCart(){
+			return getcartUser2(aux);
+		}
+		
 		public int getcartSize(){
 			Carrinho aux = CarrinhoRepository.getCarByUser(user);
 			if(aux==null){
@@ -97,5 +111,17 @@ public class CarrinhoBean {
 		public void setUser(Usuario user) {
 			this.user = user;
 		}
+		
+		public String getOther(){
+
+			  Map<String,Object> params;
+			  params = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
+			  this.aux = (Usuario)params.get("user");
+			  System.out.println("---------------------------"+this.aux.getNome());
+			  return "vendas.jsf";
+		}
+		
+		
+		
 }
 
