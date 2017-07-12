@@ -97,10 +97,14 @@ public class ProdutoRepository implements Serializable{
 		EntityManagerFactory emf = DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		
+		String sql2 = "delete from PRODUTO_CATEGORIA where produto_id="+produto.getId(); 
 		String sql = "delete from Produto WHERE id="+produto.getId();
-		Query query = em.createNativeQuery(sql);
+		Query query = em.createNativeQuery(sql2);
 		query.executeUpdate();
+		
+		Query query2 = em.createNativeQuery(sql);
+		query2.executeUpdate();
+		
 		em.getTransaction().commit();
 		em.close();
 	}

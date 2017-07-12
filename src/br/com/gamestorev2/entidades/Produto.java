@@ -25,7 +25,8 @@ public class Produto implements Serializable{
 	private int id;
 	private String nome;
 	private String descricao;
-	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER,cascade= {CascadeType.DETACH,
+			CascadeType.REFRESH})
 	private List<Categoria> categorias;
 	private double preco;
 	

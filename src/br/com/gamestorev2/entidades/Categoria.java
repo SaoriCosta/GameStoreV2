@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 
 @Entity
 public class Categoria {
@@ -18,6 +21,7 @@ public class Categoria {
 	private int id;
 	private String nome;
 	private String descricao;
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	private Produto produtos;
 	public int getId() {
 		return id;

@@ -24,112 +24,76 @@ ul li {
 .btn {
 	background: #000;
 	color: #fff;
-	padding: 0.5%;
+	padding: 2.4%;
 	border: none;
-	border-radius: 5%;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .inputTextSearch {
-	width: 100%;
+	padding: 2%;
+	width: 80%;
+	border: none;
+	border-radius: 0px;
 }
-#modal-window-login{
-	background:#1565c0;
-	padding:2%;
-	margin:0;
-	border-top-left-radius:21%;
-	border-top-right-radius:21%;
-	color:#fff;
-	
+
+#modal-window-login {
+	background: #1565c0;
+	height: 100px;
+	padding: 2em; margin : 0;
+	border-top-left-radius: 21%;
+	border-top-right-radius: 21%;
+	color: #fff;
+	margin: 0
 }
-.ui-widget{
+
+#form {
+	margin-top: 5%;
+}
+
+.ui-widget, .ui-widget .ui-widget {
 	font-family: sans-serif;
 }
 </style>
 
 	<script src="js/jquery.min.js"></script>
 	<script>
-	$(document).ready(function(e){
-		$("#modal-window-login").hide();
-		
-		$("#cad").onClick(function(e){
-			$("#modal-window-login").fadeOut(1000);
-		});
-		
-		
-	});
-		
-		
-	}
+		$(document).ready(function(e) {
+			$("#modal-window-login").hide();
 
-</script>
+			$("#cad").onClick(function(e) {
+				$("#modal-window-login").fadeOut(1000);
+			});
+
+		});}
+	</script>
 </h:head>
 <h:body>
-	<h:outputText value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
-<div id="modal-window-login">
-		<h:form>
-			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-					
-			<p:outputLabel value="Email:" for="email"></p:outputLabel>
-			<h:inputText id="email" value="#{loginBean.login}">
-				<f:validator validatorId="emailValidator"></f:validator>
-			
-			</h:inputText>
-			<p:outputLabel value="Senha:" for="senha"></p:outputLabel>
-			<h:inputText id="senha" value="#{loginBean.senha}"></h:inputText>
-			  
-			<h:commandButton value="Login" action="#{loginBean.logar}" update="growl" ></h:commandButton>
-		</h:form>
-
-	</div>
-	<h:form style="width:100%;">
-		<p:menubar>
-			<p:menuitem value="Home"></p:menuitem>
-			<p:submenu label="File">
-				<p:submenu label="Open">
-				<p:menuitem value="#{categoriaBean.categorias}" var="c"> 
-					<p:menuitem value="#{c}" itemLabel="#{c.nome}"></p:menuitem>
-				</p:menuitem>
-					
-				</p:submenu>
-				<p:menuitem value="Edit"></p:menuitem>
-				<p:separator />
-				<p:menuitem value="Exit"></p:menuitem>
-			</p:submenu>
-			<p:submenu label="Help">
-				<p:menuitem value="About JournalDev"></p:menuitem>
-				<p:menuitem value="Contact Us"></p:menuitem>
-				<p:separator />
-				<p:menuitem value="Help"></p:menuitem>
-			</p:submenu>
-		</p:menubar>
-	</h:form>
-
-
 	
+<p:layoutUnit style="border:1px solid #fff;">
+  <ui:include src="/template/top_menu.xhtml"></ui:include>
+</p:layoutUnit>
 
 
-	<div>
-		<ul>
-			<li><h:outputLink value="#home">Home</h:outputLink></li>
-			<li><h:outputLink value="#categoria.jsf">Produtos</h:outputLink></li>
-			<li><h:selectOneMenu value="#{categoriaBean.categoria}">
-					<f:selectItem itemLabel="Selecione a categoria..."></f:selectItem>
-					<f:selectItems value="#{categoriaBean.categorias}" var="c"
-						itemLabel="#{c.nome}" itemValue="#{c}">
-					</f:selectItems>
-				</h:selectOneMenu></li>
-			<li><h:form id="form">
-					<h:inputText></h:inputText>
-					<h:commandButton class="btn" value="Pesquisar" type="submit" />
-				</h:form></li>
-			<li><h:outputLink value="#contato">Contato</h:outputLink></li>
-			<li><h:outputLink id="cad" value="#contato">Login / Cadastre-se</h:outputLink></li>
-		</ul>
-	</div>
+
+	<img src="images/Callofduty.png" style="width:100%;"/>
 
 	<hr></hr>
 
+	<h:form>
+		<p:outputLabel value="Filtar Por: " for="cat_select" />
+		<h:selectOneMenu id="cat_select" value="#{categoriaBean.categoria}">
+			<f:selectItem itemLabel="Selecione a categoria..."></f:selectItem>
+			<f:selectItems value="#{categoriaBean.categorias}" var="c"
+				itemLabel="#{c.nome}" itemValue="#{c}">
+			</f:selectItems>
+		</h:selectOneMenu>
+	</h:form>
 
+
+
+
+	<hr></hr>
 	<h:form>
 		<p:dataGrid var="produto" value="#{dataGridView.produtos}" columns="3"
 			layout="grid" rows="12" paginator="true" id="produtos"
@@ -144,14 +108,14 @@ ul li {
 				<h:panelGrid columns="1" style="width:100%">
 					<img src="#{produto.image}" width="140px" height="80px" />
 					<h:form>
-						<h:outputText value="#{produto.nome}" />
-						<h:inputHidden value="#{produtoBean.produto.nome}" />
-						<h:outputText value="#{produto.descricao}" />
-						<h:inputHidden value="#{produtoBean.produto.descricao}" />
-						<h:outputText value="R$ #{produto.preco}" />
-						<h:inputHidden value="#{produtoBean.produto.preco}" />
+						<h:outputText value="#{produto.nome}" /><br></br>
+						
+						<h:outputText value="#{produto.descricao}" /><br></br>
+						
+						<h:outputText value="R$ #{produto.preco}" /><br></br>
+						
 						<h:commandButton value="Add to Cart"
-							action="#{carrinhoBean.salvar(produto)}"></h:commandButton>
+							action="#{produtoBean.add(produto)}"></h:commandButton>
 					</h:form>
 				</h:panelGrid>
 			</p:panel>
@@ -183,7 +147,6 @@ ul li {
 			</p:outputPanel>
 		</p:dialog>
 	</h:form>
-
 
 
 

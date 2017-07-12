@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+
+<style>
+html {
+	font-family: sans-serif;
+}
+
+ul {
+	
+}
+
+ul li {
+	display: inline;
+}
+
+.btn {
+	background: #000;
+	color: #fff;
+	padding: 2.4%;
+	border: none;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.inputTextSearch {
+	padding: 2%;
+	width: 85%;
+	border: none;
+	border-radius: 0px;
+}
+
+#modal-window-login {
+	background: #1565c0;
+	height: 100px;
+	padding: 2em; margin : 0;
+	border-top-left-radius: 21%;
+	border-top-right-radius: 21%;
+	color: #fff;
+	margin: 0
+}
+
+#form {
+	margin-top: 5%;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-family: sans-serif;
+}
+</style>
+
+	<script src="js/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(e) {
+			$("#modal-window-login").hide();
+
+			$("#cad").onClick(function(e) {
+				$("#modal-window-login").fadeOut(1000);
+			});
+
+		});}
+	</script>
+
+</h:head>
+<h:body>
+
+
+<div>
+		<div class="ui-g">
+			<div class="ui-g-5">
+				<h:outputText value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
+			</div>
+			<div class="ui-g-7">
+
+				<h:form>
+					<p:messages id="messages" showDetail="true" autoUpdate="true"
+						closable="true" />
+
+					<p:outputLabel value="Email:" for="email"></p:outputLabel>
+					<h:inputText id="email" value="#{loginBean.login}">
+						<f:validator validatorId="emailValidator"></f:validator>
+
+					</h:inputText>
+					<p:outputLabel value="Senha:" for="senha"></p:outputLabel>
+					<h:inputText id="senha" value="#{loginBean.senha}"></h:inputText>
+
+					<h:commandButton value="Login" action="#{loginBean.logar}"
+						update="growl"></h:commandButton>
+				</h:form>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<div id="modal-window-login">
+
+		<div id="ui-g">
+			<div class="ui-g-3">
+				<h2>GameStoreV2</h2>
+			</div>
+			<div class="ui-g-6">
+
+
+				<h:form id="form">
+					<p:inputText placeholder="Digite o que você procura.."
+						class="inputTextSearch"></p:inputText>
+					<p:commandButton class="btn" icon="ui-icon-search" type="submit" />
+				</h:form>
+			</div>
+			<div class="ui-g-2"></div>
+
+		</div>
+
+	</div>
+	<h:form style="width:100%;">
+		<p:menubar>
+			<p:menuitem value="Home" icon="ui-icon-home"></p:menuitem>
+			<p:menuitem value="Produtos" icon="ui-icon-tag">
+
+			</p:menuitem>
+			<p:menuitem value=""></p:menuitem>
+			<p:submenu label="#algo">
+				<p:submenu label="Open">
+
+					<p:menuitem value="#{categoriaBean.categorias}" var="c">
+						<p:menuitem value="#{c}" itemLabel="#{c.nome}"></p:menuitem>
+					</p:menuitem>
+
+				</p:submenu>
+				<p:menuitem value="Edit"></p:menuitem>
+				<p:separator />
+				<p:menuitem value="Exit"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Help">
+				<p:menuitem value="About JournalDev"></p:menuitem>
+				<p:menuitem value="Contact Us"></p:menuitem>
+				<p:separator />
+				<p:menuitem value="Help"></p:menuitem>
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+
+
+
+
+</h:body>
+</html>

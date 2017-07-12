@@ -53,11 +53,16 @@ public class CarrinhoRepository implements Serializable{
 	
 	}
 	
-	public static void update(){
+	public static void update(Carrinho carrinho){
 		EntityManagerFactory emf = DatabaseManager.getEmf();
 		EntityManager em = emf.createEntityManager();
 		
+		em.getTransaction().begin();
+		em.merge(carrinho);
+		em.getTransaction().commit();
+		em.close();
 		
+		System.out.println("Atualizado com sucesso");
 		
 	}
 	
