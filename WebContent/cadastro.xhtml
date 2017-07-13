@@ -6,22 +6,47 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<h1>Cadastre-se</h1>
-	<h:form>
-		<h:outputLabel value="Nome: " /><h:inputText value="#{usuarioBean.usuario.nome}"/>
-		<h:outputLabel value="E-mail: " /><h:inputText value="#{usuarioBean.usuario.email}"/>
-		<h:outputLabel value="CPF: " /><h:inputText value="#{usuarioBean.usuario.cpf}"/>
-		<h:outputLabel value="Senha: " /><h:inputText value="#{usuarioBean.usuario.senha}"/>
-		<h:commandButton value="Salvar" action="#{usuarioBean.salvar}"></h:commandButton>
-	
-	
-	</h:form>
 
 
+	<ui:include src="/template/top_menu.xhtml"></ui:include>
+
+	<p:panel id="basic" header="Cadastrar-se"
+		footer="Faça parte você também da maior loja de games da história de todo o universo"
+		style="margin-bottom:20px">
+		<h:panelGrid columns="2" cellpadding="10">
+
+
+
+			<h:form id="form2"> 
+			<p:growl id="message" showDetail="true" />
+				<p:messages id="messages" showDetail="true" autoUpdate="true" />
+				<h:panelGrid columns="2" cellpadding="1">
+					<p:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
+					<p:outputLabel for="email" value="E-mail: " />
+					<p:inputText id="email" value="#{usuarioBean.usuario.email}">
+						<f:validator validatorId="emailValidator"></f:validator>
+					</p:inputText>
+					<p:outputLabel for="cpf" value="CPF: " />
+					<p:inputText id="cpf" value="#{usuarioBean.usuario.cpf}">
+						<f:validator validatorId="cpfValidador"></f:validator>
+
+					</p:inputText>
+					<p:outputLabel for="senha" value="Senha: " />
+					<p:inputText id="senha" value="#{usuarioBean.usuario.senha}" />
+					
+					<p:commandButton onclick="alert('Cadastrado com sucesso')" style="background:#000;border:none;color:#fff;" value="Salvar"
+						type="submit" update="form2" action="#{usuarioBean.salvar}">
+						
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</h:panelGrid>
+	</p:panel>         
 
 </h:body>
 </html>

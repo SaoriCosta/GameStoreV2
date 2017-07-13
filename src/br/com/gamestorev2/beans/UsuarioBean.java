@@ -30,12 +30,12 @@ public class UsuarioBean {
 		if(UsuarioRepository.getByLogin(usuario.getEmail())==null){
 			UsuarioRepository.setUsuario(usuario);
 			setUsuario(new Usuario());
-			return "/index.jsf";
+			return "index.jsf";
 		}
 		
 		UsuarioRepository.update(getUsuario());
 		setUsuario(new Usuario());
-		return "/index.jsf";
+		return "index.jsf";
 		
 	}
 	

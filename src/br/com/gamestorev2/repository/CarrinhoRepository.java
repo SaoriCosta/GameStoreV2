@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 import br.com.gamestorev2.databasemaneger.DatabaseManager;
 import br.com.gamestorev2.entidades.Carrinho;
@@ -65,6 +66,23 @@ public class CarrinhoRepository implements Serializable{
 		
 		System.out.println("Atualizado com sucesso");
 		
+	}
+
+	public static void remove(Carrinho carrinho) {
+		EntityManagerFactory emf = DatabaseManager.getEmf();
+		EntityManager em = emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		String sql = "delete from CARRINHO_PRODUTO where CARRINHO_ID="+carrinho.getId();
+		Query query = em.createNativeQuery(sql);
+		query.executeUpdate();
+		
+		String sql2 = "delete from CARRINHO where USUARIO_ID="+carrinho.getUsuario().getId();
+		Query query2 = em.createNativeQuery(sql2);
+		query2.executeUpdate();
+		
+		em.getTransaction().commit();
+		em.close();
 	}
 	
 }

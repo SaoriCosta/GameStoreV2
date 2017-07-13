@@ -41,6 +41,7 @@ public class VendaBean {
 
 		VendaRepository.setVenda(venda);
 		setVenda(new Venda());
+		CarrinhoRepository.remove(carrinho);
 		System.out.println("Venda gravada com sucesso");
 		return "/index.jsf";
 	}

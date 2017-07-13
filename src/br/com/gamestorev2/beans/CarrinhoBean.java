@@ -112,15 +112,6 @@ public class CarrinhoBean {
 			this.user = user;
 		}
 		
-		public String getOther(){
-
-			  Map<String,Object> params;
-			  params = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
-			  this.aux = (Usuario)params.get("user");
-			  System.out.println("---------------------------"+this.aux.getNome());
-			  return "vendas.jsf";
-		}
-		
 		
 		
 }

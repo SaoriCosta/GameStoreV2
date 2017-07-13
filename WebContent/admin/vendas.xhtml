@@ -40,9 +40,9 @@
 
 		<p:column headerText="">
 			<p:dialog header="Effects" widgetVar="dlg3#{v.codigo}"
-				showEffect="explode" hideEffect="bounce" height="auto">
+				showEffect="explode" height="auto">
 				
-				<p:dataTable value="#{carrinhoBean.cart.produto}" var="p" rows="5" paginator="true">
+				<p:dataTable value="#{carrinhoBean.cartUser.produto}" var="p" rows="5" paginator="true">
 					<p:column headerText="ID">
 						<h:outputText value="#{p.id}" />
 					</p:column>
@@ -66,7 +66,6 @@
 			
 			<p:commandButton icon="ui-icon-search" type="submit"
 				onclick="PF('dlg3#{v.codigo}').show();"  value="Ver Detalhes...">
-				<f:param name="user" value="#{v.usuario}" />
 				
 				</p:commandButton>
 				

@@ -26,6 +26,7 @@
 		<p:inputText id="desc" value="#{produtoBean.produto.descricao}"></p:inputText>
 		
 		<h:outputLabel for="cat" value="Categorias:"></h:outputLabel>
+		
 		<p:selectManyCheckbox id="cat" value="#{produtoBean.produto.categorias}">
 			<f:converter converterId="categoriaConverter" />
 			<f:selectItems value="#{categoriaBean.categorias}" var="c"

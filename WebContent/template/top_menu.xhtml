@@ -121,8 +121,12 @@ color:blue;
 
 				<h:form id="form">
 					<h:inputText a:placeholder="Digite o que você procura.."
-						class="inputTextSearch"></h:inputText>
-					<p:commandButton class="btn" icon="ui-icon-search" type="submit" />
+						class="inputTextSearch" value="#{buscaBean.busca.query}"></h:inputText>
+					<h:commandButton style="padding:1%;background:#1565c0;color:#fff;border:none;"
+						icon="ui-icon-search" type="submit" action="#{buscaBean.looking}">
+	</h:commandButton>	
+						
+					
 				</h:form>
 			</div>
 			<div class="ui-g-3"></div>
@@ -133,7 +137,7 @@ color:blue;
 	<h:form style="width:100%;">
 		<p:menubar style="background:#000;border:none;border-radius:3px;">
 			
-			<p:menuitem style="color:#fff;" value="Home" icon="ui-icon-home"></p:menuitem>
+			<p:menuitem style="color:#fff;" value="Home" icon="ui-icon-home" outcome="index.jsf"></p:menuitem>
 			<p:menuitem style="color:#fff;" value="Produtos" icon="ui-icon-tag" ></p:menuitem>
 			<p:menuitem style="color:#fff;" value="Ação" icon="ui-icon-tag" ></p:menuitem>
 			<p:menuitem style="color:#fff;" value="Aventura" icon="ui-icon-tag" ></p:menuitem>
