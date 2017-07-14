@@ -84,7 +84,6 @@ public String logar(){
 public String getDeslogar(){
 	setUsuario(null);
 	return "/index.jsf";
-	
 }
 
 

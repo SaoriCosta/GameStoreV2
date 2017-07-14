@@ -13,12 +13,11 @@
 </h:head>
 <h:body>
 
-Pagina do administrador : <h:form><p:commandButton value="Sair" action="#{loginBean.deslogar()}" ajax="false"></p:commandButton></h:form><br></br>
-<hr></hr>
+Pagina do administrador : <hr></hr>
 
 <h:form>
 	<p:menubar style="background:#000;">
-		<p:menuitem icon="ui-icon ui-icon-home" style="color:#fff;" value="Inicio" outcome="index.jsf"></p:menuitem>
+		<p:menuitem icon="ui-icon ui-icon-home" style="color:#fff;" value="Inicio" outcome="/index.jsf"></p:menuitem>
 		<p:menuitem style="color:#fff;"  value="Produtos" outcome="produtos.jsf"></p:menuitem>
 			<p:menuitem style="color:#fff;"  value="Categorias" outcome="categoria.jsf"></p:menuitem>
 				<p:menuitem style="color:#fff;"  value="Vendas" outcome="vendas.jsf"></p:menuitem>

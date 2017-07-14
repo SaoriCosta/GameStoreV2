@@ -53,6 +53,7 @@ public class CategoriaRepository implements Serializable {
 			em.getTransaction().commit();
 			em.close();
 		} catch (NoResultException e) {
+			em.close();
 			System.out.println(e.getMessage());
 		}
 		
@@ -72,6 +73,7 @@ public class CategoriaRepository implements Serializable {
 			em.getTransaction().commit();
 			em.close();
 		} catch (NoResultException e) {
+			em.close();
 			System.out.println(e.getMessage());
 		}
 		

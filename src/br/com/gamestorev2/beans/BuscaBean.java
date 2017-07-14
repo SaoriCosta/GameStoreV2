@@ -41,5 +41,14 @@ public class BuscaBean {
 		}
 		return "/busca.jsf";
 	}
+	
+	public String lookingcategoria(){
+		busca.setProdutos(SearchRepository.getSearchByCategoria(busca.getCategoria()));
+		if(busca.getProdutos() == null){
+			return "/index.jsf";
+		}
+		
+		return "/busca.jsf";
+	}
 		
 }

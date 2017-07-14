@@ -75,7 +75,7 @@ public class ProdutoRepository implements Serializable{
 		em.getTransaction().commit();
 		
 		}catch(NoResultException e){
-			
+			em.close();
 		}
 		em.close();
 		return produto;

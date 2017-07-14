@@ -54,6 +54,7 @@ public class UsuarioRepository implements Serializable{
 		em.getTransaction().commit();
 		em.close();}
 		catch(NoResultException e){
+			em.close();
 			System.out.println("Erro!");
 		}
 		
@@ -71,6 +72,7 @@ public class UsuarioRepository implements Serializable{
 		em.getTransaction().commit();
 		em.close();
 		}catch(NoResultException r){
+			em.close();
 			System.out.println(r.getMessage());
 		}
 		return user;

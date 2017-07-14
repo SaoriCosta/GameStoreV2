@@ -41,13 +41,14 @@ public class CarrinhoRepository implements Serializable{
 			EntityManager em = emf.createEntityManager();
 			Carrinho car = null;
 			try{
+				
 				em.getTransaction().begin();
 				String sql = "SELECT o FROM Carrinho o Where usuario_id = "+user.getId();
 				car = em.createQuery(sql,Carrinho.class).getSingleResult();
 				em.getTransaction().commit();
 				em.close();
 		}catch(NoResultException r){
-			
+			em.close();
 		}
 			return car;
 		}else return null;

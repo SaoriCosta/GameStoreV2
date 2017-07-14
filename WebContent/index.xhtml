@@ -63,23 +63,24 @@ ul li {
 		});}
 	</script>
 </h:head>
-<h:body>
+<h:body >
 
-	<p:layoutUnit style="border:1px solid #fff;">
+
 		<ui:include src="/template/top_menu.xhtml"></ui:include>
-	</p:layoutUnit>
+	
 
 	<hr></hr>
 
 	<h:form>
 		<p:outputLabel value="Filtrar Por: " for="cat_select" />
-		<h:selectOneMenu id="cat_select" value="#{categoriaBean.categoria}">
-			<f:selectItem itemLabel="Selecione a categoria..."></f:selectItem>
+		<h:selectOneMenu id="cat_select" value="#{buscaBean.busca.categoria}">
+			<f:converter converterId="categoriaConverter"></f:converter>
+			
 			<f:selectItems value="#{categoriaBean.categorias}" var="c"
 				itemLabel="#{c.nome}" itemValue="#{c}">
 			</f:selectItems>
 		</h:selectOneMenu>
-		<h:commandButton
+		<h:commandButton action="#{buscaBean.lookingcategoria}"
 			style="
 						 	background:#000;/*#1565c0*/
 						 	color:#fff;
@@ -160,9 +161,6 @@ ul li {
 	</h:form>
 
 	<img src="images/Callofduty.png" style="width: 100%;" />
-
-
-
 
 
 

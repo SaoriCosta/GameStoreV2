@@ -20,7 +20,7 @@
 		<h:outputText value="#{loginBean.usuario.nome}"></h:outputText>
 	</h2>
 
-	<p:dataTable value="#{carrinhoBean.cartUser.produto}" var="p"
+	<p:dataTable id="table" value="#{carrinhoBean.cartUser.produto}" var="p"
 		paginator="true">
 		
 		<p:column headerText="">
@@ -50,7 +50,7 @@
 	</div>
 	<div class="ui-g-2">
 	<p:commandButton style="background:#1565c0;color:#fff;border:none;"
-		value="Finalizar Compra" type="submit" action="#{vendaBean.salvar(carrinhoBean.cartUser)}">
+		update="cart" value="Finalizar Compra" type="submit" action="#{vendaBean.salvar(carrinhoBean.cartUser)}">
 	</p:commandButton>
 	</div>
 </h:body>

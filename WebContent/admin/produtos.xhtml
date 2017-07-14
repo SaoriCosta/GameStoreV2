@@ -63,6 +63,13 @@
 		<p:column headerText="Preço">
 			<h:outputText value="#{p.preco}" />
 		</p:column>
+		<p:column headerText="Categoria">
+			<h:selectOneMenu id="cat_select">
+			<f:selectItems value="#{p.categorias}" var="c"
+				itemLabel="#{c.nome}" itemValue="#{c}">
+			</f:selectItems>
+		</h:selectOneMenu>
+		</p:column>
 		<p:column>
 			<h:form>
 				<p:commandButton value="Editar"  type="submit" update="formulario" actionListener="#{produtoBean.carregar(p)}">

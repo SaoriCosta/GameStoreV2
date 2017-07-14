@@ -34,13 +34,13 @@ ul li {
 
 .inputTextSearch {
 	padding: 2%;
-	width: 85%;
+	width: 96%;
 	border: none;
 	border-radius: 3px;
 }
 
 #modal-window-login {
-	background:#424242 ;/*#1565c0*/
+	background: #424242; /*#1565c0*/
 	height: 100px;
 	padding: 2em;
 	margin: 0;
@@ -53,8 +53,22 @@ ul li {
 	margin-top: 4%;
 }
 
-#cart{
-color:blue;
+.logout {
+	float: right;
+	background: #bf360c;
+	border: none;
+	border-radius: 4px;
+	color: #fff;
+	padding: 6%;
+	width:120px;
+}
+.logout:hover{
+	background: red;
+	cursor: pointer;
+}
+
+#cart {
+	color: blue;
 }
 
 .ui-widget, .ui-widget .ui-widget {
@@ -80,10 +94,10 @@ color:blue;
 
 	<div>
 		<div class="ui-g">
-		
-			<div class="ui-g-9">
 
-				<h:form>
+			<div class="ui-g-7">
+
+				<h:form rendered="#{loginBean.usuario == null}">
 					<p:messages id="messages" showDetail="true" autoUpdate="true"
 						closable="true" />
 
@@ -98,12 +112,23 @@ color:blue;
 					<h:commandButton value="Login" action="#{loginBean.logar}"
 						update="growl"></h:commandButton>
 				</h:form>
-				
-					<p:link id="cart"  value="Carrinho: #{carrinhoBean.cartSize}" outcome="/carrinho.jsf"></p:link>
-				
+
 			</div>
-				<div class="ui-g-3">
-				<h:outputText value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
+			<div class="ui-g-2">
+				<h:outputText rendered="#{loginBean.usuario != null}"
+					value="Bem Vindo : #{loginBean.usuario.nome}"></h:outputText>
+			</div>
+			<div class="ui-g-2">
+				<p:link id="cart" rendered="#{loginBean.usuario != null}"
+					value="Carrinho: #{carrinhoBean.cartSize}" outcome="/carrinho.jsf"></p:link>
+			</div>
+
+			<div class="ui-g-1">
+
+				<h:form>
+					<h:commandButton rendered="#{loginBean.usuario != null}" class="logout" id="logout" value="Logout" action="#{loginBean.getDeslogar()}">
+					</h:commandButton>
+				</h:form>
 			</div>
 
 		</div>
@@ -122,11 +147,12 @@ color:blue;
 				<h:form id="form">
 					<h:inputText a:placeholder="Digite o que você procura.."
 						class="inputTextSearch" value="#{buscaBean.busca.query}"></h:inputText>
-					<h:commandButton style="padding:1%;background:#1565c0;color:#fff;border:none;"
+					<h:commandButton value="Pesquisar"
+						style="float:right;padding:1%;background:#1565c0;color:#fff;border:none;"
 						icon="ui-icon-search" type="submit" action="#{buscaBean.looking}">
-	</h:commandButton>	
-						
-					
+					</h:commandButton>
+
+
 				</h:form>
 			</div>
 			<div class="ui-g-3"></div>
@@ -136,36 +162,13 @@ color:blue;
 	</div>
 	<h:form style="width:100%;">
 		<p:menubar style="background:#000;border:none;border-radius:3px;">
+
+			<p:menuitem style="color:#fff;" value="Home" icon="ui-icon-home"
+				outcome="index.jsf"></p:menuitem>
+			<p:menuitem style="color:#fff;" value="Produtos" outcome="produtos.jsf" icon="ui-icon-tag"></p:menuitem>
 			
-			<p:menuitem style="color:#fff;" value="Home" icon="ui-icon-home" outcome="index.jsf"></p:menuitem>
-			<p:menuitem style="color:#fff;" value="Produtos" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="Ação" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="Aventura" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="Terror" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="XBOX" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="PS3" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="PS4" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="PC" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem style="color:#fff;" value="Promoções" icon="ui-icon-tag" ></p:menuitem>
-			<p:menuitem value=""></p:menuitem>
-			<p:submenu style="color:#fff;" label="#algo">
-				<p:submenu label="Open">
-
-					<p:menuitem value="#{categoriaBean.categorias}" var="c">
-						<p:menuitem value="#{c}" itemLabel="#{c.nome}"></p:menuitem>
-					</p:menuitem>
-
-				</p:submenu>
-				<p:menuitem value="Edit"></p:menuitem>
-				<p:separator />
-				<p:menuitem value="Exit"></p:menuitem>
-			</p:submenu>
-			<p:submenu style="color:#fff;" label="Help">
-				<p:menuitem value="About JournalDev"></p:menuitem>
-				<p:menuitem value="Contact Us"></p:menuitem>
-				<p:separator />
-				<p:menuitem value="Help"></p:menuitem>
-			</p:submenu>
+			<p:menuitem value="Cadastre-se" outcome="cadastro.jsf"></p:menuitem>
+			
 		</p:menubar>
 	</h:form>
 

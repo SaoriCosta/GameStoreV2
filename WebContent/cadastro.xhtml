@@ -23,7 +23,7 @@
 
 			<h:form id="form2"> 
 			<p:growl id="message" showDetail="true" />
-				<p:messages id="messages" showDetail="true" autoUpdate="true" />
+				
 				<h:panelGrid columns="2" cellpadding="1">
 					<p:outputLabel for="nome" value="Nome: " />
 					<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
@@ -39,10 +39,10 @@
 					<p:outputLabel for="senha" value="Senha: " />
 					<p:inputText id="senha" value="#{usuarioBean.usuario.senha}" />
 					
-					<p:commandButton onclick="alert('Cadastrado com sucesso')" style="background:#000;border:none;color:#fff;" value="Salvar"
-						type="submit" update="form2" action="#{usuarioBean.salvar}">
+					<h:commandButton style="background:#000;border:none;color:#fff;" value="Salvar"
+						type="submit" actionListener="#{usuarioBean.salvar}">
 						
-					</p:commandButton>
+					</h:commandButton>
 				</h:panelGrid>
 			</h:form>
 		</h:panelGrid>
