@@ -3,9 +3,11 @@ package br.com.gamestorev2.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.gamestorev2.entidades.Carrinho;
 import br.com.gamestorev2.entidades.Produto;
@@ -48,11 +50,13 @@ public class ProdutoBean {
 			ProdutoRepository.setProduto(produto);
 			setProduto(new Produto());
 			System.out.println("deu certo");
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação:", "Produto salvo com sucesso!"));
 			return "/admin/produtos.jsf";
 		}
 		
 		System.out.println("Vai atualizar");
 		ProdutoRepository.update(getProduto());
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação:", "Produto atualizado com sucesso!"));
 		return "/admin/produtos.jsf";
 		
 	}

@@ -60,9 +60,10 @@ ul li {
 	border-radius: 4px;
 	color: #fff;
 	padding: 6%;
-	width:120px;
+	width: 120px;
 }
-.logout:hover{
+
+.logout:hover {
 	background: red;
 	cursor: pointer;
 }
@@ -96,10 +97,10 @@ ul li {
 		<div class="ui-g">
 
 			<div class="ui-g-7">
-
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
 				<h:form rendered="#{loginBean.usuario == null}">
-					<p:messages id="messages" showDetail="true" autoUpdate="true"
-						closable="true" />
+
 
 					<p:outputLabel value="Email:" for="email"></p:outputLabel>
 					<h:inputText id="email" value="#{loginBean.login}">
@@ -107,7 +108,7 @@ ul li {
 
 					</h:inputText>
 					<p:outputLabel value="Senha:" for="senha"></p:outputLabel>
-					<h:inputText id="senha" value="#{loginBean.senha}"></h:inputText>
+					<h:inputSecret id="senha" value="#{loginBean.senha}"></h:inputSecret>
 
 					<h:commandButton value="Login" action="#{loginBean.logar}"
 						update="growl"></h:commandButton>
@@ -126,7 +127,9 @@ ul li {
 			<div class="ui-g-1">
 
 				<h:form>
-					<h:commandButton rendered="#{loginBean.usuario != null}" class="logout" id="logout" value="Logout" action="#{loginBean.getDeslogar()}">
+					<h:commandButton rendered="#{loginBean.usuario != null}"
+						class="logout" id="logout" value="Logout"
+						action="#{loginBean.getDeslogar()}">
 					</h:commandButton>
 				</h:form>
 			</div>
@@ -165,10 +168,11 @@ ul li {
 
 			<p:menuitem style="color:#fff;" value="Home" icon="ui-icon-home"
 				outcome="index.jsf"></p:menuitem>
-			<p:menuitem style="color:#fff;" value="Produtos" outcome="produtos.jsf" icon="ui-icon-tag"></p:menuitem>
-			
+			<p:menuitem style="color:#fff;" value="Produtos"
+				outcome="produtos.jsf" icon="ui-icon-tag"></p:menuitem>
+
 			<p:menuitem value="Cadastre-se" outcome="cadastro.jsf"></p:menuitem>
-			
+
 		</p:menubar>
 	</h:form>
 

@@ -19,39 +19,44 @@
 		Carrinho de
 		<h:outputText value="#{loginBean.usuario.nome}"></h:outputText>
 	</h2>
+	<h:form>
+		<p:dataTable id="table" value="#{carrinhoBean.cartUser.produto}"
+			var="p" paginator="true">
 
-	<p:dataTable id="table" value="#{carrinhoBean.cartUser.produto}" var="p"
-		paginator="true">
-		
-		<p:column headerText="">
-		<img src="#{p.image}" width="120px" height="80px"/>
-		</p:column>
-		
-		<p:column headerText="Codigo">
-			<h:outputText value="#{p.codigo}">
-			</h:outputText>
-		</p:column>
-		
-		<p:column headerText="Nome">
-			<h:outputText value="#{p.nome}">
-			</h:outputText>
-		</p:column>
-		<p:column headerText="Preco">
-			<h:outputText value="#{p.preco}">
-			</h:outputText>
-		</p:column>
+			<p:column headerText="">
+				<img src="#{p.image}" width="120px" height="80px" />
+			</p:column>
 
-	</p:dataTable>
-	<div class="ui-g-8"></div>
-	<div class="ui-g-2">
-		<h:outputText
-			value="Preço Total : #{carrinhoBean.cartUser.preco_acumulado}">
-		</h:outputText>
-	</div>
-	<div class="ui-g-2">
-	<p:commandButton style="background:#1565c0;color:#fff;border:none;"
-		update="cart" value="Finalizar Compra" type="submit" action="#{vendaBean.salvar(carrinhoBean.cartUser)}">
-	</p:commandButton>
-	</div>
+			<p:column headerText="Codigo">
+				<h:outputText value="#{p.codigo}">
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{p.nome}">
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Preco">
+				<h:outputText value="#{p.preco}">
+				</h:outputText>
+			</p:column>
+
+		</p:dataTable>
+		<div class="ui-g-8"></div>
+		<div class="ui-g-2">
+			<h:outputText
+				value="Preço Total : #{carrinhoBean.cartUser.preco_acumulado}">
+			</h:outputText>
+		</div>
+		<div class="ui-g-2">
+
+			<p:growl id="message" showDetail="true" />
+			<h:commandButton style="background:#1565c0;color:#fff;border:none;padding:7%;width:200px;"
+				update="cart" value="Finalizar Compra" type="submit"
+				action="#{vendaBean.salvar(carrinhoBean.cartUser)}">
+			</h:commandButton>
+
+		</div>
+	</h:form>
 </h:body>
 </html>

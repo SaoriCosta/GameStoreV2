@@ -2,8 +2,10 @@ package br.com.gamestorev2.beans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.gamestorev2.entidades.Usuario;
 import br.com.gamestorev2.repository.UsuarioRepository;
@@ -30,6 +32,7 @@ public class UsuarioBean {
 		if(UsuarioRepository.getByLogin(usuario.getEmail())==null){
 			UsuarioRepository.setUsuario(usuario);
 			setUsuario(new Usuario());
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "Salvo com sucesso!"));
 			return "/index.jsf";
 		}
 		

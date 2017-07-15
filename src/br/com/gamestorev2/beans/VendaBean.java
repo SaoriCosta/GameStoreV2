@@ -3,7 +3,9 @@ package br.com.gamestorev2.beans;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import br.com.gamestorev2.entidades.Carrinho;
 import br.com.gamestorev2.entidades.Usuario;
@@ -43,6 +45,7 @@ public class VendaBean {
 		setVenda(new Venda());
 		CarrinhoRepository.remove(carrinho);
 		System.out.println("Venda gravada com sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação:", "Compra feita com sucesso!"));
 		return "/index.jsf";
 	}
 

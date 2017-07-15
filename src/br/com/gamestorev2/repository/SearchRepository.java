@@ -29,7 +29,7 @@ public class SearchRepository {
 		em.getTransaction().commit();
 		
 		}catch(NoResultException r){
-			
+			em.close();
 		}
 		em.close();
 		return produtos;
@@ -61,7 +61,7 @@ public class SearchRepository {
 			}
 			result.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		em.getTransaction().commit();

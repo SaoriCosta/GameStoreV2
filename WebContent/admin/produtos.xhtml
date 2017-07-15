@@ -18,7 +18,7 @@
             
             
 	<h:form id="formulario">
-	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+	<p:growl id="message" showDetail="true" />
 	<h:panelGrid columns="2" cellpadding="1">
 		<h:outputLabel for="nome" value="Nome:"></h:outputLabel>
 		<p:inputText id="nome" value="#{produtoBean.produto.nome}"></p:inputText>
